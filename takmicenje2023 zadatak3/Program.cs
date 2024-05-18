@@ -5,6 +5,7 @@
         int xp, yp, xz, yz, razdaljina1 = -1, min, xs = 0, ys = 0, razlikaX, razlikaY, xk = 0, yk = 0, kraj = 0, pomxz, pomyz, pomxp, pomyp, brp = 0, brz = 0;
         int[] razdaljina = new int[4], pasPoljaX = new int[20], pasPoljaY = new int[20], zecPoljaX = new int[20], zecPoljaY = new int[20];
         char[,] mat = new char[20, 20];
+        double procenat, pasbr = 0, zecbr = 0;
         Console.WriteLine("Unesite ulazne podatke");
         xp = int.Parse(Console.ReadLine());
         yp = int.Parse(Console.ReadLine());
@@ -109,6 +110,19 @@
             if (mat[pasPoljaX[i], pasPoljaY[i]] != 'Y')
                 mat[pasPoljaX[i], pasPoljaY[i]] = 'X';
         iscrtajBastu(mat);
+
+        //3.5
+        Console.WriteLine("\n\n************ Odgovor 4 *************\n\n");
+        for(int i = 0; i < 20; i++)
+            for(int j = 0; j < 20; j++)
+            {
+                if (mat[i, j] == 'X') pasbr += 0.5;
+                else if (mat[i, j] == 'Y' || mat[i, j] == 'O') zecbr += 1;
+            }
+        Console.WriteLine(pasbr + " " + zecbr);
+        procenat = (zecbr + pasbr) / (mat.GetLength(0) + mat.GetLength(1)) * 10;
+        Console.WriteLine("Procenat unistenih polja je " + procenat);
+            
     }
 
     static void iscrtajBastu(char[,] mat)
